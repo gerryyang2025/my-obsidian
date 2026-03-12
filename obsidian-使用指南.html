@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obsidian 使用指南</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <style>
+        :root {
+            --bg: #fafafa;
+            --fg: #37352f;
+            --accent: #7c3aed;
+            --code-bg: #f6f8fa;
+            --border: #e0e0e0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--bg);
+            color: var(--fg);
+            line-height: 1.7;
+        }
+        
+        /* 标题样式 */
+        h1, h2, h3, h4, h5, h6 { color: #1a1a1a; margin-top: 1.8em; margin-bottom: 0.8em; font-weight: 600; }
+        h1 { font-size: 1.8em; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem; margin-top: 0; }
+        h2 { font-size: 1.5em; border-bottom: 1px solid var(--border); padding-bottom: 0.3rem; }
+        h3 { font-size: 1.25em; }
+        h4 { font-size: 1.1em; }
+        
+        /* 链接样式 */
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        
+        /* 代码样式 */
+        code {
+            background: var(--code-bg);
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: "SF Mono", "Monaco", "Inconsolata", "Fira Code", monospace;
+        }
+        pre {
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+        pre code { background: none; padding: 0; }
+        
+        /* 引用样式 */
+        blockquote {
+            border-left: 4px solid var(--accent);
+            margin: 1rem 0;
+            padding: 0.5rem 1rem;
+            color: #666;
+            background: #f9f9f9;
+            border-radius: 0 8px 8px 0;
+        }
+        blockquote p { margin: 0.3em 0; }
+        
+        /* 列表样式 */
+        ul, ol { padding-left: 1.8rem; margin: 0.8rem 0; }
+        li { margin: 0.4rem 0; }
+        li > ul, li > ol { margin: 0.2rem 0; }
+        
+        /* 任务列表 */
+        .task-item { list-style: none; margin-left: -1.2rem; }
+        .task-item input { margin-right: 0.5rem; }
+        
+        /* 表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+        th { background: var(--accent); color: white; font-weight: 600; }
+        tr:last-child td { border-bottom: none; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        tr:hover { background: #f0f0f0; }
+        
+        /* 图片样式 */
+        .md-image { max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0; }
+        
+        /* 分割线 */
+        hr { border: none; border-top: 2px solid var(--border); margin: 2rem 0; }
+        
+        /* 标签样式 */
+        .nav { margin-bottom: 2rem; }
+        .nav a { margin-right: 1rem; font-size: 1.1em; }
+        .tag {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.2em 0.6em;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-right: 0.5em;
+        }
+        
+        /* 脚注 */
+        .footnotes { margin-top: 3rem; font-size: 0.9em; color: #666; }
+        .footnotes hr { margin: 1rem 0; }
+        .footnote-ref a { color: var(--accent); }
+        
+        /* 加粗、斜体、删除线 */
+        strong { font-weight: 600; color: #1a1a1a; }
+        em { font-style: italic; }
+        del { text-decoration: line-through; color: #999; }
+        
+        /* 键盘按键样式 */
+        kbd {
+            background: #eee;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 0.1em 0.4em;
+            font-size: 0.85em;
+            font-family: monospace;
+        }
+        
+        /* 进度条 */
+        progress {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        progress::-webkit-progress-bar { background: #eee; }
+        progress::-webkit-progress-value { background: var(--accent); }
+        
+        /* 提示框 */
+        .tip, .warning, .info {
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        .tip { background: #e8f5e9; border-left: 4px solid #4caf50; }
+        .warning { background: #fff3e0; border-left: 4px solid #ff9800; }
+        .info { background: #e3f2fd; border-left: 4px solid #2196f3; }
+        
+        /* 更新时间 */
+        .update-time {
+            font-size: 0.85em;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav"><a href="/obsidian/">📚 笔记列表</a> <a href="/obsidian/search.html">🔍 搜索</a></nav>
+    <article><p class="update-time">更新时间：2026-03-11</p><div class="tags" style="margin: 0.5rem 0;"><span class="tag">#Obsidian</span><span class="tag">#使用指南</span><span class="tag">#教程</span></div><h1 id="obsidian-使用指南">Obsidian 使用指南</h1>
+<blockquote>
+<p>本指南帮助你快速上手 Obsidian 笔记软件</p>
+</blockquote>
+<h2 id="什么是-obsidian">什么是 Obsidian？</h2>
+<p>Obsidian 是一个<strong>本地优先</strong>的笔记和知识管理工具，基于 Markdown 文件存储，帮你构建个人知识库。</p>
+<h2 id="核心概念">核心概念</h2>
+<h3 id="1-保险库-vault">1. 保险库 (Vault)</h3>
+<ul>
+<li>保险库 = 一个文件夹</li>
+<li>包含所有笔记（.md 文件）和配置</li>
+<li>可以创建多个保险库（工作/个人/项目）</li>
+</ul>
+<h3 id="2-双向链接-bidirectional-links">2. 双向链接 (Bidirectional Links)</h3>
+<pre><code class="hljs language-markdown"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;笔记名称.html&quot;</span>&gt;</span></span>笔记名称<span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span>  # 创建链接</code></pre><p>点击链接可跳转到对应笔记，形成知识网络。</p>
+<h3 id="3-标签-tags">3. 标签 (Tags)</h3>
+<pre><code class="hljs language-markdown"><span class="hljs-section">#标签名</span>
+<span class="hljs-section">#工作/项目A  # 支持嵌套</span></code></pre><h3 id="4-元数据-frontmatter">4. 元数据 (Frontmatter)</h3>
+<p>文件顶部可添加 YAML 元数据：</p>
+<pre><code class="hljs language-yaml"><span class="hljs-meta">---</span>
+<span class="hljs-attr">title:</span> <span class="hljs-string">我的笔记</span>
+<span class="hljs-attr">date:</span> <span class="hljs-number">2026-03-11</span>
+<span class="hljs-attr">tags:</span> [<span class="hljs-string">教程</span>, <span class="hljs-string">Obsidian</span>]
+<span class="hljs-meta">---</span></code></pre><h2 id="快速开始">快速开始</h2>
+<h3 id="基本语法">基本语法</h3>
+<h4 id="标题">标题</h4>
+<pre><code class="hljs language-markdown"><span class="hljs-section"># 一级标题</span>
+<span class="hljs-section">## 二级标题</span>
+<span class="hljs-section">### 三级标题</span></code></pre><h4 id="列表">列表</h4>
+<pre><code class="hljs language-markdown"><span class="hljs-bullet">-</span> 无序列表项
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span>&gt;</span></span> 未完成事项
+<span class="hljs-bullet">-</span> [x] 已完成事项</code></pre><h4 id="加粗和斜体">加粗和斜体</h4>
+<pre><code class="hljs language-markdown"><span class="hljs-strong">**加粗文本**</span>
+<span class="hljs-emphasis">*斜体文本*</span>
+~~删除线~~</code></pre><h4 id="代码">代码</h4>
+<pre><code class="hljs language-markdown"><span class="hljs-code">`行内代码`</span>
+
+<span class="hljs-code">```python
+# 代码块
+def hello():
+    print(&quot;Hello!&quot;)</span></code></pre><pre><code>
+#### 引用
+```markdown
+> 这是一段引用</code></pre><h4 id="分割线">分割线</h4>
+<pre><code class="hljs language-markdown">---</code></pre><h3 id="创建笔记">创建笔记</h3>
+<ol>
+<li>按 `Ctrl+N`（Mac: `Cmd+N`）创建新笔记</li>
+<li>输入文件名（可带中文）</li>
+<li>开始写作</li>
+</ol>
+<h3 id="搜索">搜索</h3>
+<ul>
+<li>`Ctrl+O` 快速搜索所有笔记</li>
+<li>`Ctrl+Shift+F` 搜索内容</li>
+</ul>
+<h3 id="插件推荐">插件推荐</h3>
+<table>
+<thead>
+<tr>
+<th>插件</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Dataview</td>
+<td>数据库式查询</td>
+</tr>
+<tr>
+<td>QuickAdd</td>
+<td>快速添加笔记</td>
+</tr>
+<tr>
+<td>Obsidian Git</td>
+<td>自动备份到 Git</td>
+</tr>
+<tr>
+<td>Calendar</td>
+<td>日历视图</td>
+</tr>
+</tbody></table>
+<h2 id="进阶技巧">进阶技巧</h2>
+<h3 id="1-建立知识网络">1. 建立知识网络</h3>
+<p>通过 <code>&lt;a href=&quot;笔记链接.html&quot;&gt;笔记链接&lt;/a&gt;</code> 将相关笔记关联起来，形成个人知识图谱。</p>
+<h3 id="2-使用模板">2. 使用模板</h3>
+<p>创建模板文件，快速复用：</p>
+<pre><code class="hljs language-markdown"><span class="hljs-section"># {{title}}</span>
+
+日期：{{date}}
+标签：
+
+<span class="hljs-section">## 今天做了什么</span>
+
+<span class="hljs-section">## 明天计划</span>
+</code></pre><h3 id="3-双向链接反向查看">3. 双向链接反向查看</h3>
+<p>在笔记底部查看哪些文章链接到了当前笔记。</p>
+<h2 id="本地使用">本地使用</h2>
+<ol>
+<li>从官网下载 Obsidian：https://obsidian.md</li>
+<li>选择「打开本地保险库」</li>
+<li>选择 `/root/.openclaw/workspace/data/obsidian` 文件夹</li>
+</ol>
+<blockquote>
+<p>注意：需要将该文件夹同步到本地（可使用 iCloud、OneDrive、Git 等）</p>
+</blockquote>
+<h2 id="常见问题">常见问题</h2>
+<h3 id="q-笔记会丢失吗">Q: 笔记会丢失吗？</h3>
+<p>A: 不会，所有笔记都是本地 .md 文件，删除软件笔记仍在。</p>
+<h3 id="q-如何同步到手机">Q: 如何同步到手机？</h3>
+<p>A: 使用 iCloud、OneDrive 等云盘同步，或 Obsidian 官方同步服务。</p>
+<h3 id="q-误删如何恢复">Q: 误删如何恢复？</h3>
+<p>A: 检查电脑回收站，或使用 Git 恢复。</p>
+<hr>
+<p><em>持续更新中...</em></p>
+</article>
+    <hr><footer><p>Powered by Obsidian Static Generator</p></footer>
+</body>
+</html>

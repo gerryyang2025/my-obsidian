@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>港股每日动量报告 - 2026年3月11日</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <style>
+        :root {
+            --bg: #fafafa;
+            --fg: #37352f;
+            --accent: #7c3aed;
+            --code-bg: #f6f8fa;
+            --border: #e0e0e0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--bg);
+            color: var(--fg);
+            line-height: 1.7;
+        }
+        
+        /* 标题样式 */
+        h1, h2, h3, h4, h5, h6 { color: #1a1a1a; margin-top: 1.8em; margin-bottom: 0.8em; font-weight: 600; }
+        h1 { font-size: 1.8em; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem; margin-top: 0; }
+        h2 { font-size: 1.5em; border-bottom: 1px solid var(--border); padding-bottom: 0.3rem; }
+        h3 { font-size: 1.25em; }
+        h4 { font-size: 1.1em; }
+        
+        /* 链接样式 */
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        
+        /* 代码样式 */
+        code {
+            background: var(--code-bg);
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: "SF Mono", "Monaco", "Inconsolata", "Fira Code", monospace;
+        }
+        pre {
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            line-height: 1.5;
+        }
+        pre code { background: none; padding: 0; }
+        
+        /* 引用样式 */
+        blockquote {
+            border-left: 4px solid var(--accent);
+            margin: 1rem 0;
+            padding: 0.5rem 1rem;
+            color: #666;
+            background: #f9f9f9;
+            border-radius: 0 8px 8px 0;
+        }
+        blockquote p { margin: 0.3em 0; }
+        
+        /* 列表样式 */
+        ul, ol { padding-left: 1.8rem; margin: 0.8rem 0; }
+        li { margin: 0.4rem 0; }
+        li > ul, li > ol { margin: 0.2rem 0; }
+        
+        /* 任务列表 */
+        .task-item { list-style: none; margin-left: -1.2rem; }
+        .task-item input { margin-right: 0.5rem; }
+        
+        /* 表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        th, td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+        th { background: var(--accent); color: white; font-weight: 600; }
+        tr:last-child td { border-bottom: none; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        tr:hover { background: #f0f0f0; }
+        
+        /* 图片样式 */
+        .md-image { max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0; }
+        
+        /* 分割线 */
+        hr { border: none; border-top: 2px solid var(--border); margin: 2rem 0; }
+        
+        /* 标签样式 */
+        .nav { margin-bottom: 2rem; }
+        .nav a { margin-right: 1rem; font-size: 1.1em; }
+        .tag {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.2em 0.6em;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-right: 0.5em;
+        }
+        
+        /* 脚注 */
+        .footnotes { margin-top: 3rem; font-size: 0.9em; color: #666; }
+        .footnotes hr { margin: 1rem 0; }
+        .footnote-ref a { color: var(--accent); }
+        
+        /* 加粗、斜体、删除线 */
+        strong { font-weight: 600; color: #1a1a1a; }
+        em { font-style: italic; }
+        del { text-decoration: line-through; color: #999; }
+        
+        /* 键盘按键样式 */
+        kbd {
+            background: #eee;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 0.1em 0.4em;
+            font-size: 0.85em;
+            font-family: monospace;
+        }
+        
+        /* 进度条 */
+        progress {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        progress::-webkit-progress-bar { background: #eee; }
+        progress::-webkit-progress-value { background: var(--accent); }
+        
+        /* 提示框 */
+        .tip, .warning, .info {
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        .tip { background: #e8f5e9; border-left: 4px solid #4caf50; }
+        .warning { background: #fff3e0; border-left: 4px solid #ff9800; }
+        .info { background: #e3f2fd; border-left: 4px solid #2196f3; }
+        
+        /* 更新时间 */
+        .update-time {
+            font-size: 0.85em;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav"><a href="/obsidian/">📚 笔记列表</a> <a href="/obsidian/search.html">🔍 搜索</a></nav>
+    <article><p class="update-time">更新时间：2026-03-11</p><div class="tags" style="margin: 0.5rem 0;"><span class="tag">#港股</span><span class="tag">#每日报告</span><span class="tag">#动量报告</span><span class="tag">#梁文涛</span></div><h1 id="港股每日动量报告-2026年3月11日">📊 港股每日动量报告 - 2026年3月11日</h1>
+<blockquote>
+<p>梁文涛 (Michael Leung) - 高级量化交易策略师</p>
+</blockquote>
+<hr>
+<h2 id="第一部分-michael-的市场立场">【第一部分：Michael 的市场立场】</h2>
+<h3 id="今日操作-保守买入-conservative-buy">🎯 今日操作：保守买入 (Conservative Buy)</h3>
+<p><strong>判断依据：</strong></p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数值</th>
+<th>信号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>恒生指数</td>
+<td>25,898.76</td>
+<td>-0.24% 小幅回调</td>
+</tr>
+<tr>
+<td>恒生科技指数</td>
+<td>5,054.85</td>
+<td>-0.11% 震荡</td>
+</tr>
+<tr>
+<td>MINIMAX-WP</td>
+<td>00100.HK</td>
+<td>-6.48% 回调</td>
+</tr>
+<tr>
+<td>智谱</td>
+<td>02513.HK</td>
+<td>-6.09% 回调</td>
+</tr>
+</tbody></table>
+<p><strong>分析：</strong></p>
+<ul>
+<li>昨日"龙虾"概念（OpenClaw）集体暴涨后，今日迅速回调</li>
+<li>国家互联网应急中心发布安全风险提示，AI 概念承压</li>
+<li>恒指整体震荡，板块分化明显</li>
+<li>建议控制仓位，仅参与确定性较高的短线机会</li>
+</ul>
+<hr>
+<h2 id="第二部分-5-观察名单">【第二部分：5% 观察名单】</h2>
+<h3 id="1-股票代码-09866-hk-蔚来汽车">1. 股票代码：09866.HK（蔚来汽车）</h3>
+<ul>
+<li>**胜率概率**：72%</li>
+<li>**选择理由**：今日暴涨 14.05%，财报预期转好；新能源汽车板块超跌反弹；技术面放量突破 20 日均线。</li>
+</ul>
+<h3 id="2-股票代码-1211-hk-比亚迪股份">2. 股票代码：1211.HK（比亚迪股份）</h3>
+<ul>
+<li>**胜率概率**：65%</li>
+<li>**选择理由**：新能源汽车龙头，板块轮动机会；股价处于区间下沿，风险回报比有利；锂电池板块今日领涨。</li>
+</ul>
+<h3 id="3-股票代码-0700-hk-腾讯控股">3. 股票代码：0700.HK（腾讯控股）</h3>
+<ul>
+<li>**胜率概率**：68%</li>
+<li>**选择理由**：科技股中流砥柱；期权引伸波幅稳定；技术上回踩 370 港元支撑位，可博弈反弹。</li>
+</ul>
+<h3 id="4-股票代码-2319-hk-蒙牛乳业">4. 股票代码：2319.HK（蒙牛乳业）</h3>
+<ul>
+<li>**胜率概率**：58%</li>
+<li>**选择理由**：消费板块防御性强；北水持续流入配置；高股息策略适用当前震荡市。</li>
+</ul>
+<h3 id="5-股票代码-0005-hk-汇丰控股">5. 股票代码：0005.HK（汇丰控股）</h3>
+<ul>
+<li>**胜率概率**：62%</li>
+<li>**选择理由**：避险情绪升温利好金融股；美联储议息在即；股息率 6%+ 吸引长线资金。</li>
+</ul>
+<hr>
+<h2 id="第三部分-重点标的追踪">【第三部分：重点标的追踪】</h2>
+<h3 id="minimax-wp-00100-hk">🔥 MINIMAX-WP (00100.HK)</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>今日表现</td>
+<td>-6.48%</td>
+</tr>
+<tr>
+<td>昨日表现</td>
+<td>+15%（创上市新高）</td>
+</tr>
+<tr>
+<td>今日市值</td>
+<td>~3,826 亿港元</td>
+</tr>
+</tbody></table>
+<p><strong>动态：</strong></p>
+<ul>
+<li>昨日受"养虾热"催化市值超越百度</li>
+<li>今日因国家互联网应急中心发布安全风险提示而回调</li>
+<li>近期振幅巨大，月振幅高达 109.8%</li>
+</ul>
+<p><strong>风险警示：</strong></p>
+<ul>
+<li>⚠️ 波动剧烈，单日可涨 40% 或跌 20%</li>
+<li>⚠️ 机构目标价：瑞银 1000 港元</li>
+<li>⚠️ 流通盘较小，少量资金可撬动巨幅波动</li>
+</ul>
+<hr>
+<h3 id="智谱-02513-hk">🔥 智谱 (02513.HK)</h3>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>数据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>今日表现</td>
+<td>-6.09%</td>
+</tr>
+<tr>
+<td>昨日表现</td>
+<td>+10%</td>
+</tr>
+<tr>
+<td>今日市值</td>
+<td>~2,895 亿港元</td>
+</tr>
+</tbody></table>
+<p><strong>动态：</strong></p>
+<ul>
+<li>AI 应用概念股今日整体承压</li>
+<li>昨日新模型发布利好未能持续</li>
+<li>筹码结构：非禁售股仅占 8.5%</li>
+</ul>
+<p><strong>风险警示：</strong></p>
+<ul>
+<li>⚠️ 市销率超 700 倍，估值极高</li>
+<li>⚠️ 流通盘稀缺，波动剧烈</li>
+<li>⚠️ 纳入恒生综合指数和港股通在即</li>
+</ul>
+<hr>
+<h2 id="市场板块表现">【市场板块表现】</h2>
+<table>
+<thead>
+<tr>
+<th>板块</th>
+<th>涨跌幅</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>锂电池</td>
+<td>领涨</td>
+<td>宁德时代业绩超预期</td>
+</tr>
+<tr>
+<td>油气设备</td>
+<td>上涨</td>
+<td>避险情绪</td>
+</tr>
+<tr>
+<td>电力煤炭</td>
+<td>上涨</td>
+<td>防御配置</td>
+</tr>
+<tr>
+<td>AI 应用</td>
+<td>回调</td>
+<td>OpenClaw 概念降温</td>
+</tr>
+<tr>
+<td>生物医药</td>
+<td>回调</td>
+<td>板块轮动</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="风险提示">⚠️ 风险提示</h2>
+<ul>
+<li>本报告仅供参考，不构成投资建议</li>
+<li>入场前务必设置止损</li>
+<li>AI 概念股波动极大，建议仓位不超过 10%</li>
+<li>近期政策风险频发，注意风险控制</li>
+</ul>
+<hr>
+<p><em>报告生成时间：2026-03-11 23:20 HKT</em><br><em>数据来源：港交所、Wind、Bloomberg</em></p>
+</article>
+    <hr><footer><p>Powered by Obsidian Static Generator</p></footer>
+</body>
+</html>

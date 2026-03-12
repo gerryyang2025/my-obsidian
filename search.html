@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索笔记</title>
+    <style>
+        :root { --bg: #fafafa; --fg: #37352f; --accent: #7c3aed; }
+        body { font-family: -apple-system, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; background: var(--bg); color: var(--fg); }
+        h1 { color: var(--accent); }
+        .search-box { margin: 1rem 0; }
+        .search-box input { width: 100%; padding: 0.8rem; font-size: 1rem; border: 2px solid #ddd; border-radius: 8px; }
+        .search-box input:focus { border-color: var(--accent); outline: none; }
+        .results { margin-top: 1rem; }
+        .result { background: white; padding: 1rem; margin: 0.5rem 0; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .result a { color: var(--fg); text-decoration: none; display: block; }
+        .result a:hover { color: var(--accent); }
+        .result .date { font-size: 0.8em; color: #999; }
+        .no-results { color: #999; font-style: italic; }
+    </style>
+</head>
+<body>
+    <nav class="nav"><a href="/obsidian/">📚 笔记列表</a></nav>
+    <hr>
+    <h1>🔍 搜索笔记</h1>
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="输入关键词搜索..." autofocus>
+    </div>
+    <div class="results" id="results"></div>
+    
+    <script>
+        const searchIndex = [
+  {
+    "title": "Obsidian 使用指南",
+    "date": "2026-03-11",
+    "filename": "obsidian-使用指南.html"
+  },
+  {
+    "title": "OpenClaw 完全指南",
+    "date": "2026-03-11",
+    "filename": "openclaw-完全指南.html"
+  },
+  {
+    "title": "今日要闻深度解读 - 2026年03月12日",
+    "date": "2026-03-12",
+    "filename": "今日要闻深度解读-2026年03月12日.html"
+  },
+  {
+    "title": "深圳一手房市场分析 (2026年3月)",
+    "date": "2026-03-11",
+    "filename": "深圳一手房市场分析-2026年3月.html"
+  },
+  {
+    "title": "港股每日动量报告 - 2026年3月11日",
+    "date": "2026-03-11",
+    "filename": "港股每日动量报告-2026年3月11日.html"
+  },
+  {
+    "title": "港股每日动量报告",
+    "date": "2026-03-12",
+    "filename": "港股每日动量报告.html"
+  }
+];
+        
+        const searchInput = document.getElementById('searchInput');
+        const resultsDiv = document.getElementById('results');
+        
+        function search(query) {
+            if (!query.trim()) {
+                resultsDiv.innerHTML = '';
+                return;
+            }
+            
+            query = query.toLowerCase();
+            const results = searchIndex.filter(note => 
+                note.title.toLowerCase().includes(query) ||
+                note.date.includes(query)
+            );
+            
+            if (results.length === 0) {
+                resultsDiv.innerHTML = '<p class="no-results">没有找到匹配的笔记</p>';
+            } else {
+                resultsDiv.innerHTML = results.map(note => 
+                    '<div class="result"><a href="' + note.filename + '"><strong>' + note.title + '</strong></a>' +
+                    (note.date ? '<br><span class="date">' + note.date + '</span>' : '') + '</div>'
+                ).join('');
+            }
+        }
+        
+        searchInput.addEventListener('input', (e) => search(e.target.value));
+    </script>
+</body>
+</html>
