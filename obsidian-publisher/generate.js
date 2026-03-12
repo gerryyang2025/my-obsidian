@@ -286,7 +286,7 @@ const TEMPLATE = `<!DOCTYPE html>
     </style>
 </head>
 <body>
-    <nav class="nav"><a href="/obsidian/">📚 笔记列表</a> <a href="/obsidian/search.html">🔍 搜索</a></nav>
+    <nav class="nav"><a href="index.html">📚 笔记列表</a> <a href="search.html">🔍 搜索</a></nav>
     <article>{{content}}</article>
     <hr><footer><p>Powered by Obsidian Static Generator</p></footer>
 </body>
@@ -526,7 +526,7 @@ function generateSearch() {
     </style>
 </head>
 <body>
-    <nav class="nav"><a href="/obsidian/">📚 笔记列表</a></nav>
+    <nav class="nav"><a href="index.html">📚 笔记列表</a></nav>
     <hr>
     <h1>🔍 搜索笔记</h1>
     <div class="search-box">
