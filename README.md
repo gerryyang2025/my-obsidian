@@ -2,6 +2,8 @@
 
 个人 Obsidian 笔记仓库：用 Markdown 写笔记，通过工具转为静态网页，**默认使用 GitHub Pages 部署**供浏览器访问。
 
+**在线访问**：[https://gerryyang2025.github.io/my-obsidian/](https://gerryyang2025.github.io/my-obsidian/)
+
 ## 功能概览
 
 - **笔记源文件**：仓库根目录下的 `.md` 文件（支持 YAML frontmatter：`title`、`date`、`tags`）
