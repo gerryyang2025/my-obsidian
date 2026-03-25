@@ -125,8 +125,12 @@ marked.use({ renderer: renderer });
 const hljs = require('highlight.js');
 
 // 笔记源目录（.md 所在）与静态站输出目录，可通过环境变量覆盖
-const VAULT_DIR = process.env.VAULT_DIR || path.join(__dirname, '..');
-const OUTPUT_DIR = process.env.OUTPUT_DIR || path.join(__dirname, '..');
+// VAULT_DIR: 从 data/ 目录读取 .md 文件
+// NOTE_OUTPUT_DIR: 笔记 HTML 输出到 data/ 目录
+// INDEX_OUTPUT_DIR: index.html 和 search.html 输出到根目录
+const VAULT_DIR = process.env.VAULT_DIR || path.join(__dirname, '..', 'data');
+const NOTE_OUTPUT_DIR = process.env.NOTE_OUTPUT_DIR || path.join(__dirname, '..', 'data');
+const INDEX_OUTPUT_DIR = process.env.INDEX_OUTPUT_DIR || path.join(__dirname, '..');
 
 const TEMPLATE = `<!DOCTYPE html>
 <html lang="zh-CN">
@@ -286,7 +290,7 @@ const TEMPLATE = `<!DOCTYPE html>
     </style>
 </head>
 <body>
-    <nav class="nav"><a href="index.html">📚 笔记列表</a> <a href="search.html">🔍 搜索</a></nav>
+    <nav class="nav"><a href="../index.html">📚 笔记列表</a> <a href="../search.html">🔍 搜索</a></nav>
     <article>{{content}}</article>
     <hr><footer><p>Powered by Obsidian Static Generator</p></footer>
 </body>
@@ -434,7 +438,7 @@ function generateIndex() {
     // 使用 allNotes（包含友好的文件名）
     const sortedNotes = [...allNotes].sort((a, b) => a.title.localeCompare(b.title, 'zh'));
     sortedNotes.forEach(n => {
-        const href = n.friendlyFilename || (n.filename.slice(0, -3) + '.html');
+        const href = n.htmlFilename;
         html += '    <div class="note"><a href="' + href + '">';
         html += '<strong>' + n.title + '</strong>';
         if (n.date) html += ' <span class="date">(' + n.date + ')</span>';
@@ -445,16 +449,16 @@ function generateIndex() {
 }
 
 // Main
-if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+if (!fs.existsSync(NOTE_OUTPUT_DIR)) fs.mkdirSync(NOTE_OUTPUT_DIR, { recursive: true });
 
 // 第一步：预填充 allNotes
 const files = fs.readdirSync(VAULT_DIR).filter(f => f.endsWith('.md') && !f.startsWith('.'));
 files.forEach(filename => {
     const content = fs.readFileSync(path.join(VAULT_DIR, filename), 'utf-8');
     const { meta, body } = extractFrontmatter(content);
-    
+
     let title = meta.title || filename.slice(0, -3);
-    
+
     // 从第一个标题提取
     if (!meta.title && body) {
         const firstHeadingMatch = body.match(/^#\s+(.+)$/m);
@@ -466,40 +470,38 @@ files.forEach(filename => {
             }
         }
     }
-    
-    // 生成友好的文件名
-    const friendlyName = title
-        .replace(/[^\u4e00-\u9fa5a-zA-Z0-9]+/g, '-')
-        .replace(/^-+|-+$/g, '')
-        .toLowerCase();
-    
+
+    // HTML 文件名与 MD 文件名一致（只是后缀不同）
+    const htmlFilename = filename.slice(0, -3) + '.html';
+
     allNotes.push({
         title,
         date: meta.date || '',
         filename,
-        friendlyFilename: friendlyName + '.html'
+        htmlFilename: htmlFilename
     });
 });
 
-// 第二步：生成 HTML 文件
+// 第二步：生成笔记 HTML 文件到 data/ 目录
 allNotes.forEach(note => {
     const result = processNote(note.filename);
     if (result) {
-        const outputName = note.friendlyFilename;
-        fs.writeFileSync(path.join(OUTPUT_DIR, outputName), result.html);
+        const outputName = note.htmlFilename;
+        fs.writeFileSync(path.join(NOTE_OUTPUT_DIR, outputName), result.html);
         console.log('✅ ' + note.title + ' -> ' + outputName);
     }
 });
 
-// 第三步：生成索引和搜索页面
-const indexHtml = generateIndex();
-fs.writeFileSync(path.join(OUTPUT_DIR, 'index.html'), indexHtml);
+// 第三步：生成索引和搜索页面到根目录
+// 修改 generateIndex 中的链接，指向 data/ 目录
+const indexHtml = generateIndex().replace(/href="([^"]+\.html)"/g, 'href="data/$1"');
+fs.writeFileSync(path.join(INDEX_OUTPUT_DIR, 'index.html'), indexHtml);
 console.log('✅ 生成索引页面');
 
 const searchIndex = allNotes.map(n => ({
     title: n.title,
     date: n.date,
-    filename: n.friendlyFilename
+    filename: 'data/' + n.htmlFilename
 }));
 function generateSearch() {
     const indexJson = JSON.stringify(searchIndex, null, 2);
@@ -567,11 +569,13 @@ function generateSearch() {
 </body>
 </html>`;
     
-    fs.writeFileSync(path.join(OUTPUT_DIR, 'search.html'), html);
+    fs.writeFileSync(path.join(INDEX_OUTPUT_DIR, 'search.html'), html);
     console.log('✅ 生成搜索页面');
 }
 
 // 生成搜索页面
 generateSearch();
 
-console.log('\n🎉 完成！静态网站已生成到: ' + OUTPUT_DIR);
+console.log('\n🎉 完成！');
+console.log('📁 笔记 HTML 已生成到: ' + NOTE_OUTPUT_DIR);
+console.log('📁 索引和搜索页已生成到: ' + INDEX_OUTPUT_DIR);

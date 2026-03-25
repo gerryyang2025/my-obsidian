@@ -19,8 +19,9 @@ my-obsidian/
 ├── .gitignore
 ├── index.html                # 笔记列表首页（由 obsidian-publisher 生成）
 ├── search.html               # 搜索页（由 obsidian-publisher 生成）
-├── *.md                      # 笔记源文件（Obsidian 可直接编辑）
-├── *.html                    # 由 .md 生成的单篇笔记页面
+├── data/                     # 笔记源文件与生成的 HTML（由 obsidian-publisher 管理）
+│   ├── *.md                  # 笔记源文件（Obsidian 可直接编辑）
+│   └── *.html                # 由 .md 生成的单篇笔记页面
 └── obsidian-publisher/       # MD → HTML 发布工具
     ├── README.md             # 工具用法说明
     ├── package.json
@@ -59,22 +60,23 @@ my-obsidian/
 
 ### 配置与运行
 
-脚本通过两个路径工作：
+脚本通过三个路径工作：
 
-- **笔记源目录（VAULT_DIR）**：从中读取所有 `.md` 文件（不含以 `.` 开头的文件）
-- **输出目录（OUTPUT_DIR）**：在此目录写入各笔记的 `.html`、`index.html`、`search.html`
+- **笔记源目录（VAULT_DIR）**：从中读取所有 `.md` 文件（不含以 `.` 开头的文件），默认 `data/`
+- **笔记 HTML 输出目录（NOTE_OUTPUT_DIR）**：写入各笔记的 `.html`，默认 `data/`
+- **索引页输出目录（INDEX_OUTPUT_DIR）**：写入 `index.html`、`search.html`，默认仓库根目录
 
 **默认行为**（不设环境变量时）：
-源目录与输出目录均为**仓库根目录**（即 `obsidian-publisher` 的上一级）。在 `obsidian-publisher` 下执行 `node generate.js` 即可从仓库根读 `.md` 并往仓库根写 HTML。
+笔记源与笔记 HTML 输出到 `data/` 目录，`index.html` 和 `search.html` 输出到仓库根目录。在 `obsidian-publisher` 下执行 `node generate.js` 即可。
 
 **自定义路径**（可选）：
 通过环境变量覆盖后再运行：
 
 ```bash
 cd obsidian-publisher
-VAULT_DIR=/path/to/notes OUTPUT_DIR=/path/to/output node generate.js
+VAULT_DIR=/path/to/notes NOTE_OUTPUT_DIR=/path/to/notes OUTPUT_DIR=/path/to/output node generate.js
 # 或
-VAULT_DIR=/path/to/notes OUTPUT_DIR=/path/to/output npm run generate
+VAULT_DIR=/path/to/notes NOTE_OUTPUT_DIR=/path/to/notes OUTPUT_DIR=/path/to/output npm run generate
 ```
 
 **输出文件名规则**：
@@ -165,9 +167,10 @@ npx serve -p 8000
 
 | 说明           | 路径/文件 |
 |----------------|-----------|
-| 笔记列表首页   | `index.html` |
-| 搜索页         | `search.html` |
-| 单篇笔记页面   | 由笔记 **title**（frontmatter 或首个 `#` 标题）生成文件名，如「Obsidian 使用指南」→ `obsidian-使用指南.html` |
+| 笔记列表首页   | `index.html`（仓库根目录） |
+| 搜索页         | `search.html`（仓库根目录） |
+| 单篇笔记页面   | `data/` 目录下，由笔记 **title**（frontmatter 或首个 `#` 标题）生成文件名，如「Obsidian 使用指南」→ `data/obsidian-使用指南.html` |
+| 笔记源文件     | `data/` 目录下的 `.md` 文件 |
 
 ## 许可证
 

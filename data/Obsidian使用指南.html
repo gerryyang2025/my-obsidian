@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>深圳一手房市场分析 (2026年3月)</title>
+    <title>Obsidian 使用指南</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <style>
@@ -156,235 +156,120 @@
     </style>
 </head>
 <body>
-    <nav class="nav"><a href="index.html">📚 笔记列表</a> <a href="search.html">🔍 搜索</a></nav>
-    <article><p class="update-time">更新时间：2026-03-11</p><div class="tags" style="margin: 0.5rem 0;"><span class="tag">#房地产</span><span class="tag">#深圳</span><span class="tag">#市场分析</span><span class="tag">#一手房</span></div><h1 id="深圳一手房市场分析-2026年3月">深圳一手房市场分析 (2026年3月)</h1>
+    <nav class="nav"><a href="../index.html">📚 笔记列表</a> <a href="../search.html">🔍 搜索</a></nav>
+    <article><p class="update-time">更新时间：2026-03-11</p><div class="tags" style="margin: 0.5rem 0;"><span class="tag">#Obsidian</span><span class="tag">#使用指南</span><span class="tag">#教程</span></div><h1 id="obsidian-使用指南">Obsidian 使用指南</h1>
 <blockquote>
-<p>更新时间：2026-03-11</p>
+<p>本指南帮助你快速上手 Obsidian 笔记软件</p>
 </blockquote>
-<h2 id="最新成交数据-2026年3月">📊 最新成交数据（2026年3月）</h2>
-<h3 id="一手房成交">一手房成交</h3>
+<h2 id="什么是-obsidian">什么是 Obsidian？</h2>
+<p>Obsidian 是一个<strong>本地优先</strong>的笔记和知识管理工具，基于 Markdown 文件存储，帮你构建个人知识库。</p>
+<h2 id="核心概念">核心概念</h2>
+<h3 id="1-保险库-vault">1. 保险库 (Vault)</h3>
+<ul>
+<li>保险库 = 一个文件夹</li>
+<li>包含所有笔记（.md 文件）和配置</li>
+<li>可以创建多个保险库（工作/个人/项目）</li>
+</ul>
+<h3 id="2-双向链接-bidirectional-links">2. 双向链接 (Bidirectional Links)</h3>
+<pre><code class="hljs language-markdown"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;笔记名称.html&quot;</span>&gt;</span></span>笔记名称<span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span>  # 创建链接</code></pre><p>点击链接可跳转到对应笔记，形成知识网络。</p>
+<h3 id="3-标签-tags">3. 标签 (Tags)</h3>
+<pre><code class="hljs language-markdown"><span class="hljs-section">#标签名</span>
+<span class="hljs-section">#工作/项目A  # 支持嵌套</span></code></pre><h3 id="4-元数据-frontmatter">4. 元数据 (Frontmatter)</h3>
+<p>文件顶部可添加 YAML 元数据：</p>
+<pre><code class="hljs language-yaml"><span class="hljs-meta">---</span>
+<span class="hljs-attr">title:</span> <span class="hljs-string">我的笔记</span>
+<span class="hljs-attr">date:</span> <span class="hljs-number">2026-03-11</span>
+<span class="hljs-attr">tags:</span> [<span class="hljs-string">教程</span>, <span class="hljs-string">Obsidian</span>]
+<span class="hljs-meta">---</span></code></pre><h2 id="快速开始">快速开始</h2>
+<h3 id="基本语法">基本语法</h3>
+<h4 id="标题">标题</h4>
+<pre><code class="hljs language-markdown"><span class="hljs-section"># 一级标题</span>
+<span class="hljs-section">## 二级标题</span>
+<span class="hljs-section">### 三级标题</span></code></pre><h4 id="列表">列表</h4>
+<pre><code class="hljs language-markdown"><span class="hljs-bullet">-</span> 无序列表项
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span>&gt;</span></span> 未完成事项
+<span class="hljs-bullet">-</span> [x] 已完成事项</code></pre><h4 id="加粗和斜体">加粗和斜体</h4>
+<pre><code class="hljs language-markdown"><span class="hljs-strong">**加粗文本**</span>
+<span class="hljs-emphasis">*斜体文本*</span>
+~~删除线~~</code></pre><h4 id="代码">代码</h4>
+<pre><code class="hljs language-markdown"><span class="hljs-code">`行内代码`</span>
+
+<span class="hljs-code">```python
+# 代码块
+def hello():
+    print(&quot;Hello!&quot;)</span></code></pre><pre><code>
+#### 引用
+```markdown
+> 这是一段引用</code></pre><h4 id="分割线">分割线</h4>
+<pre><code class="hljs language-markdown">---</code></pre><h3 id="创建笔记">创建笔记</h3>
+<ol>
+<li>按 `Ctrl+N`（Mac: `Cmd+N`）创建新笔记</li>
+<li>输入文件名（可带中文）</li>
+<li>开始写作</li>
+</ol>
+<h3 id="搜索">搜索</h3>
+<ul>
+<li>`Ctrl+O` 快速搜索所有笔记</li>
+<li>`Ctrl+Shift+F` 搜索内容</li>
+</ul>
+<h3 id="插件推荐">插件推荐</h3>
 <table>
 <thead>
 <tr>
-<th>指标</th>
-<th>数据</th>
-<th>环比</th>
+<th>插件</th>
+<th>用途</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>3月9日成交</td>
-<td>332套</td>
-<td>-</td>
+<td>Dataview</td>
+<td>数据库式查询</td>
 </tr>
 <tr>
-<td>3月9日住宅成交</td>
-<td>42套</td>
-<td>-</td>
+<td>QuickAdd</td>
+<td>快速添加笔记</td>
 </tr>
 <tr>
-<td>本月累计成交</td>
-<td>583套</td>
-<td><strong>+139.9%</strong></td>
+<td>Obsidian Git</td>
+<td>自动备份到 Git</td>
 </tr>
 <tr>
-<td>本月累计面积</td>
-<td>60,506㎡</td>
-<td><strong>+124.5%</strong></td>
+<td>Calendar</td>
+<td>日历视图</td>
 </tr>
 </tbody></table>
+<h2 id="进阶技巧">进阶技巧</h2>
+<h3 id="1-建立知识网络">1. 建立知识网络</h3>
+<p>通过 <code>&lt;a href=&quot;笔记链接.html&quot;&gt;笔记链接&lt;/a&gt;</code> 将相关笔记关联起来，形成个人知识图谱。</p>
+<h3 id="2-使用模板">2. 使用模板</h3>
+<p>创建模板文件，快速复用：</p>
+<pre><code class="hljs language-markdown"><span class="hljs-section"># {{title}}</span>
+
+日期：{{date}}
+标签：
+
+<span class="hljs-section">## 今天做了什么</span>
+
+<span class="hljs-section">## 明天计划</span>
+</code></pre><h3 id="3-双向链接反向查看">3. 双向链接反向查看</h3>
+<p>在笔记底部查看哪些文章链接到了当前笔记。</p>
+<h2 id="本地使用">本地使用</h2>
+<ol>
+<li>从官网下载 Obsidian：https://obsidian.md</li>
+<li>选择「打开本地保险库」</li>
+<li>选择 `/root/.openclaw/workspace/data/obsidian` 文件夹</li>
+</ol>
 <blockquote>
-<p>数据来源：贝壳、乐有家监测 + 深圳住建局公示</p>
+<p>注意：需要将该文件夹同步到本地（可使用 iCloud、OneDrive、Git 等）</p>
 </blockquote>
-<h3 id="二手房对比">二手房对比</h3>
-<table>
-<thead>
-<tr>
-<th>指标</th>
-<th>数据</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>挂牌总量</td>
-<td><strong>96,189套</strong></td>
-</tr>
-<tr>
-<td>住宅挂牌</td>
-<td>83,684套</td>
-</tr>
-<tr>
-<td>3月9日成交</td>
-<td>258套（住宅169套）</td>
-</tr>
-</tbody></table>
+<h2 id="常见问题">常见问题</h2>
+<h3 id="q-笔记会丢失吗">Q: 笔记会丢失吗？</h3>
+<p>A: 不会，所有笔记都是本地 .md 文件，删除软件笔记仍在。</p>
+<h3 id="q-如何同步到手机">Q: 如何同步到手机？</h3>
+<p>A: 使用 iCloud、OneDrive 等云盘同步，或 Obsidian 官方同步服务。</p>
+<h3 id="q-误删如何恢复">Q: 误删如何恢复？</h3>
+<p>A: 检查电脑回收站，或使用 Git 恢复。</p>
 <hr>
-<h2 id="价格走势">💰 价格走势</h2>
-<h3 id="成交均价变化">成交均价变化</h3>
-<table>
-<thead>
-<tr>
-<th>时间</th>
-<th>均价（元/㎡）</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>2021年（高峰）</td>
-<td>82,000</td>
-<td>市场最高点</td>
-</tr>
-<tr>
-<td>2024年底</td>
-<td>61,000</td>
-<td>回调后低点</td>
-</tr>
-<tr>
-<td>2025年小阳春</td>
-<td>62,000</td>
-<td>短暂回暖</td>
-</tr>
-<tr>
-<td><strong>2026年3月</strong></td>
-<td><strong>63,600</strong></td>
-<td>环比-0.8%</td>
-</tr>
-</tbody></table>
-<h3 id="区域价格-2026年3月">区域价格（2026年3月）</h3>
-<table>
-<thead>
-<tr>
-<th>区域</th>
-<th>均价（元/㎡）</th>
-<th>趋势</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>南山区</td>
-<td>99,993</td>
-<td>核心区</td>
-</tr>
-<tr>
-<td>罗湖区</td>
-<td>70,394</td>
-<td>成熟区</td>
-</tr>
-<tr>
-<td>龙华区</td>
-<td>65,908</td>
-<td>热点区</td>
-</tr>
-<tr>
-<td>宝安区</td>
-<td>62,100</td>
-<td>潜力区</td>
-</tr>
-<tr>
-<td>大鹏新区</td>
-<td>59,438</td>
-<td>生态区</td>
-</tr>
-<tr>
-<td>盐田区</td>
-<td>50,903</td>
-<td>港口区</td>
-</tr>
-<tr>
-<td>光明区</td>
-<td>43,925</td>
-<td>新兴区</td>
-</tr>
-<tr>
-<td>龙岗区</td>
-<td>40,429</td>
-<td>刚需区</td>
-</tr>
-<tr>
-<td>坪山区</td>
-<td>~35,000</td>
-<td>洼地区</td>
-</tr>
-</tbody></table>
-<h3 id="重点区域详情">重点区域详情</h3>
-<p><strong>宝安区</strong>（2026年3月）</p>
-<ul>
-<li>新房均价：55,516元/㎡（环比持平）</li>
-<li>在售楼盘：98个</li>
-<li>待售楼盘：19个</li>
-</ul>
-<p><strong>宝安中心区</strong></p>
-<ul>
-<li>新房均价：46,926元/㎡（环比持平）</li>
-<li>同比去年：-29.40%</li>
-</ul>
-<hr>
-<h2 id="市场分析">🔍 市场分析</h2>
-<h3 id="小阳春行情启动">小阳春行情启动</h3>
-<p>2026年3月深圳楼市呈现**&quot;小阳春&quot;**态势：</p>
-<ol>
-<li>**成交量暴涨**：本月一手房成交环比上涨139.9%</li>
-<li>**看房量激增**：春节后看房量增加六成</li>
-<li>**改善型需求成主力**：大户型、置换需求活跃</li>
-</ol>
-<h3 id="供需关系">供需关系</h3>
-<ul>
-<li>**挂牌量持续增加**：二手房挂牌超9.6万套，每天新增约213套</li>
-<li>**买方市场特征明显**：议价空间增大</li>
-<li>**库存去化压力**：新房供应持续增加</li>
-</ul>
-<h3 id="政策环境">政策环境</h3>
-<ul>
-<li>限购政策仍严格执行</li>
-<li>房贷利率处于相对高位（关注LPR变化）</li>
-<li>首付款比例要求较高</li>
-</ul>
-<hr>
-<h2 id="购房建议">💡 购房建议</h2>
-<h3 id="适合购房的人群">适合购房的人群</h3>
-<ol>
-<li>**刚需自住**：有真实居住需求，可择机入场</li>
-<li>**长期投资者**：看好深圳长期发展，可关注核心区域</li>
-<li>**改善型需求**：卖一买一，可趁市场调整期换房</li>
-</ol>
-<h3 id="建议关注区域">建议关注区域</h3>
-<table>
-<thead>
-<tr>
-<th>区域</th>
-<th>适合人群</th>
-<th>理由</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>南山、福田</td>
-<td>投资/改善</td>
-<td>核心区保值</td>
-</tr>
-<tr>
-<td>龙华、宝安</td>
-<td>刚需/改善</td>
-<td>产业支撑</td>
-</tr>
-<tr>
-<td>龙岗、坪山</td>
-<td>刚需</td>
-<td>价格友好</td>
-</tr>
-</tbody></table>
-<h3 id="风险提示">风险提示</h3>
-<ul>
-<li>⚠️ 投资需谨慎，避免高杠杆</li>
-<li>⚠️ 关注开发商资金链状况</li>
-<li>⚠️ 注意合同条款，避免潜在纠纷</li>
-</ul>
-<hr>
-<h2 id="后续关注">📈 后续关注</h2>
-<ul>
-<li>LPR 利率变化</li>
-<li>限购政策是否松动</li>
-<li>房地产税试点进展</li>
-<li>深圳地铁/学校/医院等配套建设</li>
-</ul>
-<hr>
-<p><em>本文数据来源：贝壳、乐有家、深圳住建局</em></p>
+<p><em>持续更新中...</em></p>
 </article>
     <hr><footer><p>Powered by Obsidian Static Generator</p></footer>
 </body>
