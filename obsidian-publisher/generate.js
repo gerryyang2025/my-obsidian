@@ -357,25 +357,13 @@ function convertMarkdown(md) {
 
 function processNote(filename) {
     if (!filename.endsWith('.md') || filename.startsWith('.')) return null;
-    
+
     const filepath = path.join(VAULT_DIR, filename);
     const content = fs.readFileSync(filepath, 'utf-8');
     const { meta, body } = extractFrontmatter(content);
-    
-    let title = meta.title || filename.slice(0, -3);
-    
-    // 如果 frontmatter 中没有 title，尝试从正文中提取第一个标题
-    if (!meta.title && body) {
-        const firstHeadingMatch = body.match(/^#\s+(.+)$/m);
-        if (firstHeadingMatch) {
-            // 移除 emoji 和特殊字符
-            let extractedTitle = firstHeadingMatch[1].trim();
-            extractedTitle = extractedTitle.replace(/^[📰🔥💡⭐🎯✨🎨🚀💻🔧🎮📚🌍📈☁️🌦️📋]+/, '').trim();
-            if (extractedTitle) {
-                title = extractedTitle;
-            }
-        }
-    }
+
+    // HTML 标题使用文件名（去掉 .md 后缀），与输出文件名保持一致
+    const title = filename.slice(0, -3);
     
     const tags = meta.tags || '';
     const date = meta.date || '';
@@ -457,19 +445,8 @@ files.forEach(filename => {
     const content = fs.readFileSync(path.join(VAULT_DIR, filename), 'utf-8');
     const { meta, body } = extractFrontmatter(content);
 
-    let title = meta.title || filename.slice(0, -3);
-
-    // 从第一个标题提取
-    if (!meta.title && body) {
-        const firstHeadingMatch = body.match(/^#\s+(.+)$/m);
-        if (firstHeadingMatch) {
-            let extractedTitle = firstHeadingMatch[1].trim();
-            extractedTitle = extractedTitle.replace(/^[📰🔥💡⭐🎯✨🎨🚀💻🔧🎮📚🌍📈☁️🌦️📋]+/, '').trim();
-            if (extractedTitle) {
-                title = extractedTitle;
-            }
-        }
-    }
+    // HTML 标题使用文件名（去掉 .md 后缀），与输出文件名保持一致
+    const title = filename.slice(0, -3);
 
     // HTML 文件名与 MD 文件名一致（只是后缀不同）
     const htmlFilename = filename.slice(0, -3) + '.html';
