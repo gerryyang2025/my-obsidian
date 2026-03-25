@@ -7,7 +7,7 @@
 ## 功能概览
 
 - **笔记源文件**：仓库根目录下的 `.md` 文件（支持 YAML frontmatter：`title`、`date`、`tags`）
-- **静态站点生成**：由 `obsidian-publisher` 下的 Node.js 脚本 `generate.js` 完成，使用 [marked](https://github.com/markedjs/marked) 与 [highlight.js](https://highlightjs.org/) 将 Markdown 转为 HTML（无需 Python）
+- **静态站点生成**：由 `obsidian-publisher` 下的 Node.js 脚本 `generate.js` 完成，使用 [marked](https://github.com/markedjs/marked) 与 [highlight.js](https://highlightjs.org/) 将 Markdown 转为 HTML
 - **站点内容**：`index.html` 为笔记列表首页，`search.html` 为客户端搜索，每篇笔记对应一个 `.html` 页面
 - **部署方式**：默认使用 **GitHub Pages** 部署；也可部署到其他静态托管或本地/服务器 HTTP 服务
 
@@ -31,7 +31,7 @@ my-obsidian/
 
 ## 环境要求
 
-- [Node.js](https://nodejs.org/)（建议 LTS）：用于在 `obsidian-publisher` 目录下运行 `generate.js` 做 MD→HTML 转换。**无需 Python**。
+- [Node.js](https://nodejs.org/)（建议 LTS）：用于在 `obsidian-publisher` 目录下运行 `generate.js` 做 MD→HTML 转换。
 
 ---
 
